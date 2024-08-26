@@ -29,7 +29,7 @@ as a reference tool and is not designed for users to build their own CNC machine
 - **E:** Switches to rotation mode.
 - **+:** Zooms in.
 - **-:** Zooms out.
-- **Arrows** Dolly and pan camera.
+- **Arrows:** Dolly and pan camera.
 
 ## Features
 
