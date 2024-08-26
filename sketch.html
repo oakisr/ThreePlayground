@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Artesano Sketch</title>
+    <meta charset=utf-8>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script src='js/jquery-3.4.1.js'></script>          <!-- jquery -->
+    <script src="js/three.min.js"></script>             <!-- Three -->
+    <script src="js/OrbitControls.js"></script>
+    <script src="js/TransformControlsMine.js"></script>
+    <script src="js/csg.js"></script>
+    <script src="js/THREE.CSG.js"></script>
+    <script src='js/ObjectLoader.js'></script>
+    <script src='js/STLExporter.js'></script>
+    <script src="js/OBJExporter.js"></script>
+    <script src="js/OBJLoader.js"></script>
+    <script src="js/FileSaver.js"></script>
+    <script src="js/cnc.js" defer></script>
+    <!-- este codigo debe ejecutarse una vez que se hayan cargado todos los elementos -->
+</head>
+
+<body>
+<!-- Start -->
+<div id="start">
+    <span id="sketch">Artesano Sketch</span>
+    <div id="blockA" class="block">
+        <br><br>INGRESA<br><br>
+        Correo<br>
+        <input type='text' id="lmail" maxlength="30" placeholder='ej: artesano@cnc.com' value='test@email.com'><br><br>
+        Contraseña<br>
+        <input type='password' id='lcode' maxlength="30" placeholder='ingresa contraseña' value='testpassword'><br><br>
+        <button onclick="login()">Ingresar</button>
+        <br><span id="warnI"></span>
+    </div>
+    <div id="blockB" class="block">
+        REGISTRATE<br><br>
+        Nombre<br>
+        <input type='text' id="rname" maxlength="30" placeholder='ingresa tu nombre' value=''><br><br>
+        Correo<br>
+        <input type='text' id="rmail" maxlength="30" placeholder='ingresa tu email' value=''><br><span
+            id="warnM"></span><br>
+        Contraseña<br>
+        <input type='password' id='rcodeA' maxlength="30" placeholder='ingresa contraseña' value=''><br>
+        <input type='password' id='rcodeB' maxlength="30" placeholder='repite contraseña' value=''><br><span
+            id="warnR"></span><br>
+        <button onclick="signup()">Registrar</button>
+    </div>
+    <svg id="line" width="3px" height="310px">
+        <polygon points="0,0 3,0 3,310 0,310" fill="#ffffff"/>
+    </svg>
+</div>
+
+<!-- Home -->
+<div id="home">
+    <div id="h-box" onclick="showHome()"></div>
+    <div id="h-mode" class="h-text">Modo:&nbsp;</div>
+    <div id="h-cnc" class="h-boton" onclick="selectMood(1)">CNC</div>
+    <div id="h-free" class="h-boton" onclick="selectMood(2)">LIBRE</div>
+    <div id="h-user" class="h-boton" onclick="showInfo(1)">Usuario</div>
+    <div id="h-info" class="h-boton" onclick="showInfo(2)">Informaci&oacute;n</div>
+    <div id="info">
+        <div id="menu">
+            <div id="menu1" onclick="menu1()">Salsa</div>
+            <div id="menu2" onclick="menu2()">Artesano</div>
+            <div id="menu3" onclick="menu3()">Herramientas</div>
+        </div>
+        <svg id="separator" width="3px" height="380px">
+            <polygon points="0,0 3,0 3,380 0,380" fill="#ffffff"/>
+        </svg>
+        <div id="display"></div>
+    </div>
+</div>
+
+<!-- Canvas -->
+<div id="canvas-container">
+    <div id="box">
+        <svg id="arrow" width="54" height="100">
+            <polygon points="22,50 0,50 27,0 54,50 32,50 32,100 22,100"/>
+        </svg>
+        <div id="welcome">
+            <span id="w-title">Bienvenido a  Artesano Sketch!</span><br><br>Dibuja tus propios diseños en 3D y traerlos
+            al mundo real mediante CNC Artesano. Para comenzar elige un modo de diseño: <br><br>CNC - en este modo las
+            dimensiones de trabajo se adaptan a tu CNC Artesano, una vez que termines tu dibujo estar&aacute; listo para
+            el maquinado virtual.<br><br>LIBRE - en este modo podrás hacer diseños sin limitaciones de espacio que podr&aacute;s
+            exportar a formato STL y object OBJ.<br><br>Durante la marcha podr&aacute;s cambiar de modo si lo requieres.
+            Una vez termines tu dibujo haz clic en siguiente <img class="wel" src="resources/download.png"> si tienes
+            dudas sobre c&oacute;mo empezar a dibujar visita la sección de informaci&oacute;n dentro de la barra de
+            inicio <img class="wel" src="resources/home.png">
+        </div>
+    </div>
+
+    <!-- Tools bar -->
+    <span id="title">Artesano Sketch</span>
+    <span id="dim"></span>
+
+    <img class="it" id="iho" onclick="showHome()" onMouseOver="saho()" onmouseleave="haho()" src="resources/home.png">
+    <img class="it" id="ivi" onclick="showViews()" onMouseOver="savi()" onmouseleave="havi()" src="resources/view.png">
+    <img class="it" id="icl" onclick="showColor()" onMouseOver="sacl()" onmouseleave="hacl()" src="resources/color.png">
+    <img class="it" id="icn" onclick="duplicate()" onMouseOver="sacn()" onmouseleave="hacn()" src="resources/clone.png">
+    <img class="it" id="ide" onclick="erase()" onMouseOver="sade()" onmouseleave="hade()" src="resources/trash.png">
+    <img class="it" id="ido" onclick="showDownload()" onMouseOver="sado()" onmouseleave="hado()"
+         src="resources/download.png">
+    <img class="if" id="icu" onclick="addCube()" onMouseOver="sacu()" onmouseleave="hacu()" src="resources/cube.png">
+    <img class="if" id="ipr" onclick="showPrism()" onMouseOver="sapr()" onmouseleave="hapr()" src="resources/prism.png">
+    <img class="if" id="ipy" onclick="addPyramid()" onMouseOver="sapy()" onmouseleave="hapy()"
+         src="resources/pyramid.png">
+    <img class="if" id="isp" onclick="addSphere()" onMouseOver="sasp()" onmouseleave="hasp()"
+         src="resources/sphere.png">
+    <img class="if" id="icy" onclick="addCylinder()" onMouseOver="sacy()" onmouseleave="hacy()"
+         src="resources/cylinder.png">
+    <img class="if" id="ico" onclick="addCone()" onMouseOver="saco()" onmouseleave="haco()" src="resources/cone.png">
+
+    <div id="arrow-controls">
+        <svg id="translate" width="99px" height="99px" onclick="selectMode(1)">
+            <polygon id="up" points="50,0 30,20 46,20 46,45 50,50 54,45 54,20 70,20" fill="#ffffff"/>
+            <use xlink:href="#up" transform="translate(0,100) scale(1,-1)"/>
+            <use xlink:href="#up" transform="translate(99,0) rotate(90)"/>
+            <use xlink:href="#up" transform="translate(1,100) rotate(270)"/>
+        </svg>
+        <svg id="scale" width="99px" height="99px" fill="#ffffff" onclick="selectMode(3)">
+            <polygon points="50,0 30,20 44,20 44,52 56,52 56,20 70,20" transform="translate(58,-30) rotate(45)"/>
+            <polygon points="50,0 30,20 44,20 44,52 56,52 56,20 70,20" transform="translate(41,129) rotate(225)"/>
+        </svg>
+        <svg id="rotate" width="99px" height="99px" onclick="selectMode(2)">
+            <circle cx="50" cy="50" r="43" style="stroke: #ffffff; stroke-width: 12;"/>
+            <polygon points="99,50 99,22 71,50" fill="#ffffff" transform="translate(0,-5)"/>
+            <polygon points="99,50 99,99 50,50" transform="translate(0, -5)"/>
+        </svg>
+    </div>
+
+    <a class="atool" id="acu">Cubo</a>
+    <a class="atool" id="apr">Prisma</a>
+    <a class="atool" id="apy">Pir&aacute;mide</a>
+    <a class="atool" id="acy">Cilindro</a>
+    <a class="atool" id="aco">Cono</a>
+    <a class="atool" id="asp">Esfera</a>
+
+    <!-- Sliders -->
+    <div class="sliders" id="prisms">
+        <span class="sliders-text">Lados del prisma (m&aacute;x 20):</span>
+        <input class="sliders-input" id="sides" value="">&nbsp;&nbsp;
+    </div>
+    <div class="sliders" id="views">
+			<span class="sliders-text">
+				<a onclick="space(1)">Est&aacute;ndar</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+				<a onclick="space(2)">Completa</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+				<a onclick="space(3)">Superior</a>
+			</span>
+    </div>
+    <div id="colors">
+        <svg id="gama">
+            <circle id="c1" onClick="color(1)" cx="15" cy="15" r="14" fill="#7838EB"/> <!-- morado -->
+            <circle id="c2" onClick="color(2)" cx="50" cy="15" r="14" fill="#2E67EA"/> <!-- azul  -->
+            <circle id="c3" onClick="color(3)" cx="85" cy="15" r="14" fill="#2de3e3"/> <!-- cyan -->
+            <circle id="c4" onClick="color(4)" cx="120" cy="15" r="14" fill="#57d645"/> <!-- verde -->
+            <circle id="c5" onClick="color(5)" cx="155" cy="15" r="14" fill="#ffe13b"/> <!-- amarillo  -->
+            <circle id="c6" onClick="color(6)" cx="190" cy="15" r="14" fill="#e57514"/> <!-- naranja -->
+            <circle id="c7" onClick="color(7)" cx="225" cy="15" r="14" fill="#DD124E"/> <!-- carmesi -->
+            <circle id="c8" onClick="color(8)" cx="260" cy="15" r="14" fill="#d843a4"/> <!-- rosa -->
+        </svg>
+        <span id="hex-text">Picker</span>
+        <input id="hex" maxlength="7" value="ffffff" type="color">
+    </div>
+    <div id="clean">
+        <div id="ct">Estas a punto de limpiar toda la escena.<br><br>
+            Para eliminar solo un objeto seleccionalo y despues presiona sobre el contenedor de basura.
+        </div>
+        <div onclick="cleanScene()" id="cc">Limpiar escena</div>
+    </div>
+    <div id="downloads">
+        <div id="assistance">
+            <div id="assistance-text">
+                <span id="assistance-title">Asistente de maquinado virtual</span>
+                <br><br>Selecciona continuar para traer tu modelo a la realidad con CNC Artesano, el asistente te guiara
+                para:
+                <br><br>&emsp;&emsp;1. Verificar el espacio de trabajo
+                <br>&emsp;&emsp;2. Validar geometrias del dibujo
+                <br>&emsp;&emsp;3. Cargar dibujo en la aplicacion de maquinado
+                <br><br>Si solo deseas exportar tu modelo selecciona uno de los formatos: stl binary, stl ascii u
+                obj.<br><br>
+                <div style="border: 1px solid #ffffff; padding: 10px; font-size: 13px; ">
+                    Antes de continuar te recomendamos guardar tu dibujo
+                    <br><input type="text" id="pmodel" maxlength="30" value="" oninput="resetSave()">
+                    <button id="psave" onclick="exportJSON(2)">Guardar</button>
+                </div>
+            </div>
+        </div>
+        <div onclick="exportBinary()" id="binary" class="by">STL Binary</div>
+        <div onclick="exportASCII()" id="ascii" class="by">STL Ascii</div>
+        <div onclick="exportToObj()" id="obj" class="by">OBJ</div>
+        <div onclick="process()" id="continue" class="by">Continuar</div>
+    </div>
+    <div id="process">
+        <div id="pt">
+            <div id="ptt"><span id="assist">Paso 1:<br>Verificar el espacio de trabajo</span>
+                <br><br>Para que tu dibujo pueda ser maquinado, este debe permanecer dentro del area de trabajo de CNC
+                Artesano.
+                <br><br>Si actualmente tu dibujo sale del area de trabajo te recomendamos cancelar la operacion y
+                ajustarlo, si decides continuar tu dibujo sera modificado y el cambio no podra revertirse.
+                <br><br>Todas las herramientas de edicion estan desactivadas. Para volver al modo de edicion selecciona
+                cancelar.
+            </div>
+        </div>
+        <div onclick="cancel()" id="ps">Cancelar</div>
+        <div onclick="process()" id="pc">Continuar</div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="css/cnc.css">
+</body>
+
+</html>

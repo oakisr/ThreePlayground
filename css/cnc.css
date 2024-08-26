@@ -1,0 +1,760 @@
+/*---------------------------------------BODY STYLE---------------------------------------------*/  
+html, body {
+        height: 100%;
+        margin: 0;
+	 	user-select: none; 
+	 	-webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */ 
+       -ms-user-select: none; /* Internet Explorer/Edge */
+    }
+
+body{
+    overflow: hidden;
+    background-color: black;
+    font-family: Verdana, Geneva, sans-serif;
+	text-align: justify;
+}
+
+#canvas-container {
+	position: absolute;
+	height: 100%; 				/* para que un div pueda tener porcentaje html y body deben tener porcentaje especificado*/
+  	width: 100%;		
+	border-top: 2px solid #F0F8FF;
+	transition: margin-top .5s ease;
+	transition-delay: 0.2s
+}
+
+#title {
+	position: absolute;
+    right: 30px; 
+	top: 22px;
+	width: 100%;
+	text-align: right;
+	color: #F0F8FF;
+	font-size: 16px; 
+}
+
+#dim {
+ 	position: absolute;
+	bottom: 25px;
+	left:1%;
+	width: 100%;
+	text-align: center;
+	font-size: 15px; 
+	color: #CCCCCC;
+}
+
+#start button, #update, #save, #load, #delete, #close  { 
+	background-color: #de4266; 
+	height: 28px;
+	font-size: 12px;
+	color: aliceblue;
+}
+#start button:hover, #update:hover, #save:hover, #delete:hover, #close:hover {
+	background-color: #ba1238;
+}
+
+#load {
+    background-color: #3db0eb; 
+}
+#load:hover {
+    background-color: #2285b9;
+}
+
+/*--------------------------------------TABLE STYLE--------------------------------------------*/
+
+table, td, th {
+  border: 1px solid WHITE;
+  border-collapse: collapse;
+}
+
+/*--------------------------------------START STYLE--------------------------------------------*/
+
+#start{
+	z-index: 2;
+	transform: translate(-50%,-50%);
+    position: absolute; 
+	top: 50%;
+	left: 50%;
+	height:  400px;
+	width: 800px;
+	background-color: #e57514;
+	color: aliceblue;
+	border-radius: 7px;
+}
+
+.block{
+	transform: translate(-50%, 0%);
+	position: absolute;
+    top: 60px;
+	height: 400px;
+	width: 300px;
+	font-size: 17px; 
+}
+
+#blockA{
+    left: 25%;
+}
+
+#blockB{
+    left: 75%;
+}
+
+
+#start input {
+	width: 98%;
+	height: 18px;
+	font-size: 12px;
+	text-align: center;
+}
+
+#start button{ 
+	width: 100%;
+}
+
+#line{
+	position: absolute;
+    top: 60px;
+	left: 49%;
+}
+
+#sketch{
+	transform: translate(-50%, 0%);
+	position: absolute;
+    left: 25%; 
+	width: 300px;
+	top: 30px;
+	color: #F0F8FF;
+	font-size: 20px; 
+}
+
+#warnI, #warnM, #warnR, #warnE, #warnN, #warnU, #warnS{
+    font-size: 11px; 
+    text-align: left;
+}
+
+/*--------------------------------------WELCOME STYLE--------------------------------------------*/
+
+#box {
+	z-index: 1;
+    display: none;
+    position: absolute; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto;                     /* Enable scroll if needed */
+    background-color: #000000;  /* Black w/ opacity */
+	opacity:  0.6;
+}
+
+#welcome {
+	transform: translate(-50%, 0);
+	position: absolute;
+    top: 22%;
+	left: 50%;
+	width: 580px;
+	height: 500px;
+	font-size: 17px;  /* font-size utiliza 1px extra por borde (2 extras)*/ 
+	color: #CCCCCC;
+	display: none;
+}
+
+#arrow {
+    fill: #CCCCCC;
+	position: absolute;
+	left: 126px;
+	height: 80%;
+	display: none;
+}
+
+#w-title{
+	font-family: 'Time New Roman', Serif; 
+	font-weight: bold; 
+	font-size: 22px;
+}
+
+.wel {
+	width: 22px;
+	height: 22px;
+	vertical-align: bottom;
+}
+
+/*------------------------------------HOME BAR STYLE-------------------------------------------*/
+
+#home {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 500px; 	
+	width: 100%; 	
+	color: #F0F8FF;;
+}
+
+#h-box {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 4px; 	
+	width: 100%; 	
+}
+
+.h-text {
+	position: absolute;
+	top: 15px;
+	font-size: 16px;
+}
+
+.h-boton {
+	position: absolute;
+	top: 15px;
+	height: 20px;
+	font-size: 14px;
+	color: #777777;
+	border: 1px solid #777777;
+	text-align: center;
+	line-height: 20px;
+	cursor: pointer;
+}
+
+#h-mode{
+	left: 15px;
+}
+
+#h-cnc {
+	left: 75px;
+	width: 70px;
+}
+
+#h-free {
+	left: 160px;
+	width: 70px;
+}
+
+#h-info {
+	right: 30px;
+	width: 110px;
+	color: #777777;
+	border-color: #777777;
+}
+
+#h-user {
+	right: 150px;
+	width: 80px;
+	color: #777777;
+	border-color: #777777;
+}
+
+#uname, #umail, #ucode, #unewcode, #model, #models {
+    width: 400px;
+    text-align: center;
+}
+
+#update, #close { 
+	width: 408px;
+}
+
+#save, #load, #delete, #psave { 
+    margin-top: 5px;
+    margin-right: 6px;
+    height: 24px;
+	width: 132px;
+}
+
+#model {
+    margin-top: 4px;
+}
+
+/*-------------------------------------HOME INFO STYLE-------------------------------------------*/
+
+#info {
+	visibility: hidden;
+	position: absolute;
+	top: 50px;
+	width: 100%;
+	height: 420px;
+	transition: visibility .5s ease;
+	transition-delay: 0.2s;
+}
+
+#menu{
+	position: absolute;
+	right: 78%;
+	height: 420px;
+	width: 205px;
+	font-size: 16px;
+}
+
+#menu1, #menu2, #menu3 { position: absolute; right: 0; font-size: 16px; }
+#menu1:hover, #menu2:hover,  #menu3:hover { cursor: pointer; }
+#menu1{	top:70px; }
+#menu2{	top:110px; }
+#menu3{	top:150px; }
+
+#separator{
+	position: absolute;
+    top: 30px;
+    left: 24%;
+	height: 200px;
+}
+
+#display{
+	position: absolute;
+    top: 30px;
+	height: 380px;
+	font-size: 16px;
+    left: 28%;
+	width: 800px;
+	overflow-y: scroll;
+}
+
+.s {  
+    position: absolute;
+    width: 100%;
+    height: 60px;
+}
+
+.s img {  
+    position: absolute;
+    width: 60px;
+    height: 60px;
+}
+
+.s span{
+	position: absolute;
+	top: 20px;
+	left: 80px;
+}
+
+#s2  {	top: 70px; }
+#s3  {	top: 140px;}
+#s4  {	top: 210px;}
+#s5  {	top: 280px;}
+#s6  {	top: 350px;}
+
+/*------------------------------------TOOLS BAR STYLE-------------------------------------------*/
+
+#iho { left: 13px; } #ivi { left: 90px;} #icl { left: 140px;} #icn { left: 190px;} #ide { left: 240px;} #ido { left: 290px;} 
+#itr { left: 330px;} #isc { left: 380px;} #iro { left: 430px;} 
+#icu { top: 100px;} #ipr { top: 150px;} #ipy { top: 200px;} #isp { top: 250px;} #icy { top: 300px;} #ico { top: 350px;}
+#acu { top: 110px;} #apr { top: 160px;} #apy { top: 210px;} #asp { top: 260px;} #acy { top: 310px;} #aco { top: 360px;}
+
+.it {  
+    position: absolute;
+    top: 18px;
+    width: 40px;
+    height: 40px;
+    opacity: .4;	
+}
+
+.it:hover {  
+    opacity: 1;
+}
+
+.if {  
+    position: absolute;
+    left: 11px;
+    width: 41px;
+    height: 41px;
+    opacity: .4;	
+}
+
+.if:hover {  
+    opacity: 1;
+    left: 15px;
+}
+
+.atool {  
+    position: absolute;
+    top: 100px;
+    left: 60px;
+    color: #F0F8FF;
+    visibility: hidden;
+	font-size: 14px; 
+	/* filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(150deg) saturate(1000%); */
+}
+
+#arrow-controls{
+	transform: translate(-50%, -50%);
+	position: absolute;
+    top: 40px;
+    left: 50%;
+	height: 31px;
+	width: 131px;
+	display: none;
+}
+
+#arrow-controls svg{
+	position: absolute;
+	top: -34px;
+	opacity: .4;
+	transform: scale(.31,.31);
+}
+
+#translate {
+	left: -34px;	
+}
+
+#scale {
+	left: 16px;
+}
+
+#rotate {
+	left: 66px;
+}
+
+/*---------------------------------------SLIDERS STYLE---------------------------------------------*/
+
+.sliders {
+	z-index: 1;
+	/*transform: translate(-50%, -50%);   centra el objeto en la posicion izquierda superior del mismo*/
+	display: none;
+    position: absolute;
+	height: 30px; 
+	/*border: 1px solid #888; border-radius: 3px; */ 
+}
+
+.sliders-text {
+	position: absolute;
+    top: 10px;
+	font-size: 13px;  /* font-size utiliza 1px extra por borde (2 extras)*/
+	font-weight: bold;
+	color: #777777;
+}
+
+.sliders-input {
+	position: absolute;
+    top: 8px;
+    height: 14px;  /* un textbox utiliza  height como medida interna y requiere 2px por borde y 1 de espacio (6 extras)*/
+	border-width: 1px;
+	text-align: center;
+	font-size: 12px; 
+}
+
+#tab{
+	position: absolute;
+	padding: 20px 0  0 30px;
+}
+
+#prisms { top: 153px; left: 70px; width: 400px;   }
+#sides { left: 208px; width: 40px; }
+#views { top: 70px; left: 93px; width: 400px;   }
+
+/*---------------------------------------COLOR STYLE---------------------------------------------*/
+
+#colors {
+	z-index: 1;
+	display: none;
+	position: absolute;
+	top: 70px;
+	left: 93px;
+	height: 30px; 
+    width: 397px; 
+}
+
+#gama {
+	position: absolute;
+	top:  0;
+	height: 30px; 
+	width: 275px; 
+}
+
+#hex-text {
+	position: absolute;
+	top: 6px;
+	left: 285px;
+	font-size: 16px;  /* font-size utiliza 1px extra por borde (2 extras)*/
+	font-weight: bold;
+	color: #777777;
+}
+
+#hex {
+	position: absolute;
+	top: 2px;
+	left: 350px;
+    height: 27px;
+	width: 50px;
+	border-width: 1px;
+}
+
+circle {
+	stroke: #F0F8FF;
+	stroke-width: 2;
+}
+
+/* boton utiliza height como la medida externa (se le debe dar color diferete de blanco para que funcione 
+   no es valido como comentario, genera errores
+   se puede reducir en 1 tanto text box y boton para estar al nivel de la letra
+*/
+
+/*----------------------------------------CLEAN STYLE---------------------------------------------*/
+
+#clean{
+    z-index: 1;
+	display: none;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+	width: 320px;
+	height: 205px;
+}
+
+#ct {
+    position: absolute;
+    padding: 15px 20px 15px 15px; 
+    font-size: 13.5px;
+    border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+    background-color: #F0ECEC;
+}
+
+#cc{
+    position: absolute;
+	top: 120px;
+	height: 45px;
+	width: 320px;
+	text-align: center;
+	line-height: 45px;
+	color: aliceblue;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+/*----------------------------------------CLEAN STYLE---------------------------------------------*/
+
+#process{
+    z-index: 1;
+    display: none;
+	position: absolute;
+	transform: translate(50%, -50%);
+	top: 45%;
+	right: 175px;
+	width: 250px;
+	height: 450px;
+}
+
+#pt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 400px;
+    width: 100%;
+    border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+    background-color: #F0ECEC;
+}
+
+#ptt {
+    margin: 15px 20px 15px 15px; 
+    font-size: 13.5px;
+}
+
+#ps, #pc{
+    position: absolute;
+	top: 405px;
+	height: 45px;
+	width: 50%;
+	text-align: center;
+	line-height: 45px;
+	color: aliceblue;
+}
+
+#ps{
+   border-bottom-left-radius: 10px;
+}
+
+#pc{
+    left: 50%;
+    border-bottom-right-radius: 10px;
+}
+
+/*---------------------------------------DOWNLOAD STYLE--------------------------------------------*/
+
+#downloads{
+	z-index: 1;
+	display: none;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+	width: 480px;
+	height: 400px;
+}
+
+#assistance{
+	position: absolute;
+	height: 320px;
+	width: 480px;
+  	border-top-left-radius: 10px;
+  	border-top-right-radius: 10px;
+  	background-color: #F0ECEC;
+}
+
+#assistance-text{
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	width: 435px;
+	font-size: 14px; 
+	text-align: justify;
+	color: #000000;
+}
+
+#assistance-title{
+	font-size: 18px; 
+	font-weight: bold;
+}
+
+.by {
+	position: absolute;
+	top: 325px;
+	width:120px;
+	height: 75px;
+	text-align: center;
+	font-size: 17px; 
+	line-height: 75px;
+	color: #F0F8FF;
+}
+
+.by:hover, #cc:hover, #cl:hover, #pc:hover, #ps:hover{
+	opacity: .87;
+	cursor: pointer;
+}
+
+#binary{
+	left: 0px;
+	border-bottom-left-radius: 10px;
+}
+#ascii{
+	left: 120px;
+}
+#obj{
+	left: 240px;
+}
+#continue{
+	left: 360px;
+	border-bottom-right-radius: 10px;
+}
+
+#pmodel{
+    margin-top: 4px;
+    width: 70%;
+    text-align: center;
+}
+
+#psave{
+    height: 21px;
+    width: 25%;
+	font-size: 12px;
+	color: #000000;
+	border: none;
+	background-color: #ffffff;
+}
+
+#psave:hover {
+    opacity: .7;
+    cursor: pointer;
+}
+
+/*------------------------------------RESPONSIVE DESIGN----------------------------------------*/
+
+@media only screen and (max-width: 1200px) {
+    #menu{ width: 19%; }
+	#display{ width: 65%; font-size: 15px;}
+}
+
+@media only screen and (max-width: 1000px) {
+	#welcome{ width: 500px; font-size: 16px;}
+	#w-title{ font-size: 21px; }
+	
+	#menu1, #menu2, #menu3 { font-size: 14px; }
+	
+}
+
+@media only screen and (max-width: 800px) {
+    #start { width: 100%; }
+	.block  { width: 35%; }
+	#sketch { width: 35%; }
+	#model, #models { width: 70%; min-width: 200px; }
+	#save, #load, #delete { font-size: 10px; width: 23%; min-width: 65px; margin-right: 1.5%;  }
+	
+	#welcome{ width: 400px; font-size: 15px;}
+	#w-title{ font-size: 20px; }
+	#arrow-controls{ top: 80px; }
+	
+	#menu{ width:21%; }
+	#menu1, #menu2, #menu3 { font-size: 12px; }
+	#separator{ width: 2px; }
+	#display{ font-size: 14px;}
+}
+
+@media only screen and (max-width: 620px) {
+	#uname, #umail, #ucode, #unewcode {    width: 96%;    }
+    #update, #close {     width: 98%;    }
+}
+
+@media only screen and (max-width: 600px) {
+	#welcome{ width: 300px; font-size: 13px; }
+	#w-title{ font-size: 19px; }
+	#save, #load, #delete { font-size: 9px; margin-right: 6px;  }
+	
+	#menu1, #menu2, #menu3 { font-size: 11px; }
+	#warnS{ font-size: 9px; }
+	#display{ font-size: 13px;}
+}
+
+@media only screen and (max-width: 500px) {
+	#title { display: none; }
+	#start { height: 360px; }
+	#line { height: 280px; }
+	#sketch{ font-size: 14px; }
+	.block{ font-size: 13px; }
+	
+	.h-boton { font-size: 10px; }
+	.h-text { top: 18px; font-size: 13px; }
+	#h-cnc {
+    	left: 65px;
+    	width: 45px;
+    }
+    #h-free {
+    	left: 120px;
+    	width: 45px;
+    }
+    #h-info {
+    	right: 10px;
+    	width: 80px;
+    }
+    
+    #h-user {
+    	right: 105px;
+    	width: 50px;
+    }
+	
+	#menu1, #menu2, #menu3 { font-size: 8px; }
+	#display{ font-size: 10px;}
+	
+	#colors { height: 65px; width: 275px;    }
+    #hex-text {	top: 41px; left: 0;    }
+    #hex { 	top: 37px; 	left: 65px;    }
+}
+
+@media only screen and (max-width: 900px) and (max-height: 550px) {
+	#arrow{ display: none; }
+}
+
+@media only screen and (max-width: 550px), (max-height: 500px) {
+	.it { top: 15px; width: 30px; height: 30px; }
+	.if { left: 10px; width: 31px; height: 31px; }
+	#icu { top: 80px;} #ipr { top: 120px;} #ipy { top: 160px;} #isp { top: 200px;} #icy { top: 240px;} #ico { top: 280px;}
+	#acu { top: 85px;} #apr { top: 125px;} #apy { top: 165px;} #asp { top: 205px;} #acy { top: 245px;} #aco { top: 285px;}
+	#arrow-controls svg{	transform: scale(.23,.23); }
+	#translate {	left: -20px;	}
+	#scale {	left: 16px;}
+	#rotate {	left: 52px;}
+	#prisms { top: 117px;  left: 50px; }
+}
+
+
