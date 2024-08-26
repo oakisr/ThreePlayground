@@ -19,14 +19,25 @@ app provides a processing tool to export models compatible with a custom-built 3
 which was the second component of my project. While the CNC integration was tailored to my project, the app is intended
 as a reference tool and is not designed for users to build their own CNC machines.
 
+## Keyboard Actions
+
+- **Delete:** Deletes an item.
+- **Enter:** Confirms the action.
+- **Escape:** Cancels or deselects.
+- **T:** Switches to translation mode.
+- **R:** Switches to scaling mode.
+- **E:** Switches to rotation mode.
+- **+:** Zooms in.
+- **-:** Zooms out.
+- **Arrows** Dolly and pan camera.
+
 ## Features
 
 - **3D Model Creation:** Users can create, manipulate, and export 3D models in multiple formats.
 - **Interactive 3D Environment:** The app provides a rich set of tools for designing and editing 3D scenes, including
   adding/removing objects and modifying object properties.
 - **User Interaction:** Full mouse and keyboard controls allow users to interact with 3D objects and scenes seamlessly.
-- **Account Integration:** Users can save and load their 3D models directly from their accounts.
-- **Deployment:** The application was deployed using Three.js, PHP, MySQL, and other web technologies.
+- **Account Integration:** Users can sign up for an account and save models in their models library.
 
 ## Technical Stack
 
