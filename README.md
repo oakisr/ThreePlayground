@@ -3,7 +3,7 @@
 **Author:** Israel Suarez Robles  
 **Live Demo (Registration is disabled, log in with pre-filled credentials):**<br>
 [three-playground.infinityfreeapp.com](http://three-playground.infinityfreeapp.com)<br>
-It also works in mobile devices!<br>
+It also works on mobile devices!<br>
 **Local Demo:** For local deployment, read Docker instructions below.
 
 **Completion Date:** June 18, 2019<br>
